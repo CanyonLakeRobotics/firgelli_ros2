@@ -15,3 +15,5 @@ Put a file named `50-firgelli.rules` in `/etc/udev/rules.d`. It should contain j
 ## Usage
 
 `ros2 run firgelli_ros2 firgelli_server`
+
+`ros2 service call /position_command firgelli_msgs/srv/PositionCommand position_command:\ 0\`

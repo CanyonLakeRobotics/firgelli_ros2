@@ -7,14 +7,30 @@ endif()
 
 find_package(ament_cmake REQUIRED)
 
-add_executable(firgelli_server src/firgelli_server.cpp)
+set(THIS_PACKAGE_INCLUDE_DEPENDS
+  firgelli_msgs
+  rclcpp
+)
+foreach(dependency IN ITEMS ${THIS_PACKAGE_INCLUDE_DEPENDS})
+  find_package(${dependency} REQUIRED)
+endforeach()
+
+add_executable(firgelli_server
+  src/firgelli.C
+  src/firgelli_server.cpp
+)
 target_include_directories(firgelli_server PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
-target_compile_features(firgelli_server PUBLIC c_std_99 cxx_std_17)
+target_link_libraries(firgelli_server usb-1.0)
+ament_target_dependencies(firgelli_server ${THIS_PACKAGE_INCLUDE_DEPENDS})
 
-install(TARGETS firgelli_server
-  DESTINATION lib/${PROJECT_NAME})
+install(
+  TARGETS
+    firgelli_server
+  DESTINATION
+    lib/${PROJECT_NAME}
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
