@@ -27,7 +27,6 @@ private:
     firgelli_.WriteCode(location, value);
   }
 
-
   std::shared_ptr<rclcpp::Node> node_;
   Firgelli firgelli_;
 

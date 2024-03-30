@@ -12,6 +12,14 @@ Put a file named `50-firgelli.rules` in `/etc/udev/rules.d`. It should contain j
 
 `ATTRS{idVendor}=="04d8", ATTRS{idProduct}=="fc5f", GROUP="dialout", MODE="0666"`
 
+## Initial LAC settings
+
+To set the initial LAC control values, clone the StarmanSystems package, build it, then run the `setall` script:
+
+```bash
+bash ./setall
+```
+
 ## Usage
 
 `ros2 run firgelli_ros2 firgelli_server`
