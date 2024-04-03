@@ -14,7 +14,11 @@ public:
   : node_(node)
   , move_to_position_service_(node->create_service<firgelli_msgs::srv::PositionCommand>("position_command", std::bind(&FirgelliServer::moveToPosition, this, std::placeholders::_1, std::placeholders::_2)))
   {
-    firgelli_.Open(1 /* rank, assumes just 1 device */);
+    // rank parameter is useful for multiple actuators. If you just have one, rank=1
+    node_->declare_parameter("rank", rclcpp::PARAMETER_INTEGER);
+    rclcpp::Parameter rank_param = node_->get_parameter("rank");
+
+    firgelli_.Open(rank_param.as_int() /* rank, assumes just 1 device */);
     firgelli_.Info();
   }
 

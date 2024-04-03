@@ -22,6 +22,8 @@ bash ./setall
 
 ## Usage
 
-`ros2 run firgelli_ros2 firgelli_server`
+Launch with the "rank" of the actuator. If you have two actuators, the ranks would be `1` and `2`. You should also add a namespace for the node if you have multiple actuators.
 
-`ros2 service call /position_command firgelli_msgs/srv/PositionCommand position_command:\ 0\`
+`ros2 run firgelli_ros2 firgelli_server --ros-args -p rank:=1 -r __ns:=/actuator1`
+
+`ros2 service call /actuator1/position_command firgelli_msgs/srv/PositionCommand position_command:\ 0\`
