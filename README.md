@@ -1,5 +1,7 @@
 # firgelli_ros2
 
+USB control of Actuonix and Firgelli actuators.
+
 ## Hardware setup
 
 With a USB cable, connect the Actuonix linear motor control board to a Linux PC.
@@ -11,6 +13,12 @@ Add the current Linux user to a group called `dialout`.
 Put a file named `50-firgelli.rules` in `/etc/udev/rules.d`. It should contain just one line:
 
 `ATTRS{idVendor}=="04d8", ATTRS{idProduct}=="fc5f", GROUP="dialout", MODE="0666"`
+
+## Dependencies
+
+This work is based on the [StarmanSystems-Actuonix_Linux_tested](https://github.com/lucosmic/StarmanSystems-Actuonix_Linux_tested) repo. In fact, the `setall` script from that repo is still recommended (see below).
+
+The [firgelli_msgs](https://github.com/CanyonLakeRobotics/firgelli_msgs) package is also required.
 
 ## Initial LAC settings
 
